@@ -17,7 +17,6 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
         },
-        assetFileNames: 'style.css'
       },
     },
     cssCodeSplit: false,

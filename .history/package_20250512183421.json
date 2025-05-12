@@ -1,16 +1,11 @@
 {
   "name": "@aicadev/react-image-gallery",
-  "version": "1.0.15",
+  "version": "1.0.2",
+  "description": "Una galería de imágenes moderna y elegante para React, con transiciones suaves y miniaturas interactivas",
+  "private": false,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./styles.css": "./dist/style.css"
-  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
     "dist"
   ],
@@ -34,16 +29,16 @@
     "responsive",
     "thumbnails"
   ],
-  "author": "aicadev",
+  "author": "AICA Development",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aitorcachero/aicadev-react-gallery"
+    "url": "https://github.com/tu-usuario/aicadev-react-gallery"
   },
   "bugs": {
-    "url": "https://github.com/aitorcachero/aicadev-react-gallery/issues"
+    "url": "https://github.com/tu-usuario/aicadev-react-gallery/issues"
   },
-  "homepage": "https://aicadev-react-gallery.netlify.app/",
+  "homepage": "https://github.com/tu-usuario/aicadev-react-gallery#readme",
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",

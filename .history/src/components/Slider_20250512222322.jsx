@@ -95,14 +95,7 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
     return (
       <div className="slider-container">
         <div className="slider-loading">
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '1rem',
-            }}
-          >
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
             <div className="loading-spinner"></div>
             <span>Cargando...</span>
           </div>
@@ -121,7 +114,7 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
         key={state.currentIndex}
         className="slider-background"
         style={{
-          backgroundImage: `url(${images[state.currentIndex]})`,
+          backgroundImage: `url(${images[state.currentIndex]})`
         }}
       >
         <div className="slider-overlay" />
@@ -143,12 +136,12 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
                     ? {
                         background: `conic-gradient(from 0deg, #f97316 ${state.progress}%, transparent 0deg)`,
                         padding: '2px',
-                        width: `${width}px`,
+                        width: `${width}px`
                       }
                     : {
                         width: `${width}px`,
-                        padding: `${width / 20}px`,
-                      }),
+                        padding: `${width / 20}px`
+                      })
                 }}
               >
                 <div

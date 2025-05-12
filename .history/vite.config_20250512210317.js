@@ -8,18 +8,16 @@ export default defineConfig({
       entry: 'src/index.js',
       name: 'AicadevReactGallery',
       formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
+      fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM',
-        },
-        assetFileNames: 'style.css'
-      },
-    },
-    cssCodeSplit: false,
-  },
+          'react-dom': 'ReactDOM'
+        }
+      }
+    }
+  }
 });

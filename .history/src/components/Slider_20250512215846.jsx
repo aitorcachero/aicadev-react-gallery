@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import '../styles.css';
+import { sliderStyles } from './SliderStyles';
 
 export default function Slider({ images = [], interval = 5000, width = 110 }) {
   const [state, setState] = useState({
@@ -92,74 +92,60 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
   };
 
   if (state.isLoading) {
-    return (
-      <div className="slider-container">
-        <div className="slider-loading">
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '1rem',
-            }}
-          >
-            <div className="loading-spinner"></div>
-            <span>Cargando...</span>
-          </div>
-        </div>
-      </div>
-    );
+    return <div style={sliderStyles.sliderLoading}>Cargando...</div>;
   }
 
   if (images.length === 0) {
-    return <div className="slider-error">No hay imágenes para mostrar</div>;
+    return (
+      <div style={sliderStyles.sliderError}>No hay imágenes para mostrar</div>
+    );
   }
 
   return (
-    <div className="slider-container">
+    <div style={sliderStyles.sliderContainer}>
       <div
         key={state.currentIndex}
-        className="slider-background"
         style={{
+          ...sliderStyles.sliderBackground,
           backgroundImage: `url(${images[state.currentIndex]})`,
         }}
       >
-        <div className="slider-overlay" />
+        <div style={sliderStyles.sliderOverlay} />
       </div>
 
-      <div className="slider-top-gradient" />
+      <div style={sliderStyles.sliderTopGradient} />
 
-      <div className="slider-bottom-container">
-        <div className="slider-thumbnails">
-          <div className="thumbnails-container" ref={thumbnailsRef}>
-            <div className="thumbnail-spacer"></div>
+      <div style={sliderStyles.sliderBottomContainer}>
+        <div style={sliderStyles.sliderThumbnails}>
+          <div style={sliderStyles.thumbnailsContainer} ref={thumbnailsRef}>
+            <div style={sliderStyles.thumbnailSpacer}></div>
             {images.map((img, index) => (
               <button
                 key={index}
                 onClick={() => handleImageClick(index)}
-                className="thumbnail-button"
                 style={{
-                  ...(state.currentIndex === index
-                    ? {
-                        background: `conic-gradient(from 0deg, #f97316 ${state.progress}%, transparent 0deg)`,
-                        padding: '2px',
-                        width: `${width}px`,
-                      }
-                    : {
-                        width: `${width}px`,
-                        padding: `${width / 20}px`,
-                      }),
+                  ...sliderStyles.thumbnailButton,
+                  ...(state.currentIndex === index && {
+                    background: `conic-gradient(from 0deg, #f97316 ${state.progress}%, transparent 0deg)`,
+                    padding: '2px',
+                    width: `${width}px`,
+                  }),
+                  ...(!state.currentIndex === index && {
+                    width: `${width}px`,
+                    padding: `${width / 20}px`,
+                  }),
                 }}
               >
                 <div
-                  className={`thumbnail-image-container ${
-                    state.currentIndex === index ? 'thumbnail-active' : ''
-                  }`}
+                  style={{
+                    ...sliderStyles.thumbnailImageContainer,
+                    ...(state.currentIndex === index && sliderStyles.thumbnailActive),
+                  }}
                 >
                   <img
                     src={img}
                     alt={`Slide ${index + 1}`}
-                    className="thumbnail-image"
+                    style={sliderStyles.thumbnailImage}
                   />
                 </div>
               </button>

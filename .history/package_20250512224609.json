@@ -1,6 +1,6 @@
 {
   "name": "@aicadev/react-image-gallery",
-  "version": "1.0.15",
+  "version": "1.0.14",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

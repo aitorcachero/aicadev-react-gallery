@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import '../styles.css';
 
 export default function Slider({ images = [], interval = 5000, width = 110 }) {
   const [state, setState] = useState({
@@ -92,23 +91,7 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
   };
 
   if (state.isLoading) {
-    return (
-      <div className="slider-container">
-        <div className="slider-loading">
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '1rem',
-            }}
-          >
-            <div className="loading-spinner"></div>
-            <span>Cargando...</span>
-          </div>
-        </div>
-      </div>
-    );
+    return <div className="slider-loading">Cargando...</div>;
   }
 
   if (images.length === 0) {
@@ -120,9 +103,7 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
       <div
         key={state.currentIndex}
         className="slider-background"
-        style={{
-          backgroundImage: `url(${images[state.currentIndex]})`,
-        }}
+        style={{ backgroundImage: `url(${images[state.currentIndex]})` }}
       >
         <div className="slider-overlay" />
       </div>
@@ -132,14 +113,16 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
       <div className="slider-bottom-container">
         <div className="slider-thumbnails">
           <div className="thumbnails-container" ref={thumbnailsRef}>
-            <div className="thumbnail-spacer"></div>
+            <div className="thumbnail-spacer" />
             {images.map((img, index) => (
               <button
                 key={index}
                 onClick={() => handleImageClick(index)}
-                className="thumbnail-button"
-                style={{
-                  ...(state.currentIndex === index
+                className={`thumbnail-button ${
+                  state.currentIndex === index ? 'active' : ''
+                }`}
+                style={
+                  state.currentIndex === index
                     ? {
                         background: `conic-gradient(from 0deg, #f97316 ${state.progress}%, transparent 0deg)`,
                         padding: '2px',
@@ -148,12 +131,12 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
                     : {
                         width: `${width}px`,
                         padding: `${width / 20}px`,
-                      }),
-                }}
+                      }
+                }
               >
                 <div
                   className={`thumbnail-image-container ${
-                    state.currentIndex === index ? 'thumbnail-active' : ''
+                    state.currentIndex === index ? 'active' : ''
                   }`}
                 >
                   <img

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import '../styles.css';
+import './Slider.css';
 
 export default function Slider({ images = [], interval = 5000, width = 110 }) {
   const [state, setState] = useState({
     currentIndex: 0,
     progress: 0,
-    isLoading: true,
+    isLoading: true
   });
   const startTimeRef = useRef(Date.now());
   const thumbnailsRef = useRef(null);
@@ -13,20 +13,19 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
   const loadImages = useCallback(async () => {
     try {
       await Promise.all(
-        images.map(
-          (image) =>
-            new Promise((resolve, reject) => {
-              const img = new Image();
-              img.onload = resolve;
-              img.onerror = reject;
-              img.src = image;
-            })
+        images.map((image) => 
+          new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = reject;
+            img.src = image;
+          })
         )
       );
-      setState((prev) => ({ ...prev, isLoading: false }));
+      setState(prev => ({ ...prev, isLoading: false }));
     } catch (error) {
       console.error('Error al cargar las imágenes:', error);
-      setState((prev) => ({ ...prev, isLoading: false }));
+      setState(prev => ({ ...prev, isLoading: false }));
     }
   }, [images]);
 
@@ -42,13 +41,12 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
       const elapsedTime = currentTime - startTimeRef.current;
       const normalizedProgress = ((elapsedTime % interval) / interval) * 100;
 
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         progress: normalizedProgress,
-        currentIndex:
-          elapsedTime >= interval
-            ? (prev.currentIndex + 1) % images.length
-            : prev.currentIndex,
+        currentIndex: elapsedTime >= interval 
+          ? (prev.currentIndex + 1) % images.length 
+          : prev.currentIndex
       }));
 
       if (elapsedTime >= interval) {
@@ -65,17 +63,16 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
   const centerSelectedThumbnail = useCallback((index) => {
     const container = thumbnailsRef.current;
     if (!container) return;
-
+    
     const thumbnail = container.children[index + 1];
     if (!thumbnail) return;
 
     const containerWidth = container.parentElement.offsetWidth;
-    const scrollLeft =
-      thumbnail.offsetLeft - containerWidth / 2 + thumbnail.offsetWidth / 2;
+    const scrollLeft = thumbnail.offsetLeft - (containerWidth / 2) + (thumbnail.offsetWidth / 2);
 
     container.parentElement.scrollTo({
       left: scrollLeft,
-      behavior: 'smooth',
+      behavior: 'smooth'
     });
   }, []);
 
@@ -87,28 +84,12 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
 
   const handleImageClick = (index) => {
     if (index === state.currentIndex) return;
-    setState((prev) => ({ ...prev, currentIndex: index }));
+    setState(prev => ({ ...prev, currentIndex: index }));
     startTimeRef.current = Date.now();
   };
 
   if (state.isLoading) {
-    return (
-      <div className="slider-container">
-        <div className="slider-loading">
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '1rem',
-            }}
-          >
-            <div className="loading-spinner"></div>
-            <span>Cargando...</span>
-          </div>
-        </div>
-      </div>
-    );
+    return <div className="slider-loading">Cargando...</div>;
   }
 
   if (images.length === 0) {
@@ -120,9 +101,7 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
       <div
         key={state.currentIndex}
         className="slider-background"
-        style={{
-          backgroundImage: `url(${images[state.currentIndex]})`,
-        }}
+        style={{ backgroundImage: `url(${images[state.currentIndex]})` }}
       >
         <div className="slider-overlay" />
       </div>
@@ -132,35 +111,26 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
       <div className="slider-bottom-container">
         <div className="slider-thumbnails">
           <div className="thumbnails-container" ref={thumbnailsRef}>
-            <div className="thumbnail-spacer"></div>
+            <div className="thumbnail-spacer" />
             {images.map((img, index) => (
               <button
                 key={index}
                 onClick={() => handleImageClick(index)}
-                className="thumbnail-button"
-                style={{
-                  ...(state.currentIndex === index
-                    ? {
-                        background: `conic-gradient(from 0deg, #f97316 ${state.progress}%, transparent 0deg)`,
-                        padding: '2px',
-                        width: `${width}px`,
-                      }
-                    : {
-                        width: `${width}px`,
-                        padding: `${width / 20}px`,
-                      }),
-                }}
+                className={`thumbnail-button ${state.currentIndex === index ? 'active' : ''}`}
+                style={state.currentIndex === index
+                  ? {
+                      background: `conic-gradient(from 0deg, #f97316 ${state.progress}%, transparent 0deg)`,
+                      padding: '2px',
+                      width: `${width}px`,
+                    }
+                  : {
+                      width: `${width}px`,
+                      padding: `${width / 20}px`,
+                    }
+                }
               >
-                <div
-                  className={`thumbnail-image-container ${
-                    state.currentIndex === index ? 'thumbnail-active' : ''
-                  }`}
-                >
-                  <img
-                    src={img}
-                    alt={`Slide ${index + 1}`}
-                    className="thumbnail-image"
-                  />
+                <div className={`thumbnail-image-container ${state.currentIndex === index ? 'active' : ''}`}>
+                  <img src={img} alt={`Slide ${index + 1}`} className="thumbnail-image" />
                 </div>
               </button>
             ))}

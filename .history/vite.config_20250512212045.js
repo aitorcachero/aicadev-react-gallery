@@ -10,6 +10,7 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
+    cssCodeSplit: false,
     rollupOptions: {
       external: ['react', 'react-dom'],
       output: {
@@ -17,9 +18,8 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
         },
-        assetFileNames: 'style.css'
+        assetFileNames: 'index.css',
       },
     },
-    cssCodeSplit: false,
   },
 });

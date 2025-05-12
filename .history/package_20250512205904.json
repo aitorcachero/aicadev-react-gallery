@@ -1,15 +1,16 @@
 {
   "name": "@aicadev/react-image-gallery",
-  "version": "1.0.15",
+  "version": "1.0.5",
+  "description": "Una galería de imágenes moderna y elegante para React, con transiciones suaves y miniaturas interactivas",
+  "private": false,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./styles.css": "./dist/style.css"
+      "require": "./dist/index.js"
+    }
   },
   "files": [
     "dist"
@@ -34,7 +35,7 @@
     "responsive",
     "thumbnails"
   ],
-  "author": "aicadev",
+  "author": "AICA Development",
   "license": "MIT",
   "repository": {
     "type": "git",
