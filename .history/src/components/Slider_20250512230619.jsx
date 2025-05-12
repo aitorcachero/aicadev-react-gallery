@@ -37,32 +37,36 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
   useEffect(() => {
     if (images.length === 0) return;
 
-    const timer = setInterval(() => {
-      setState((prev) => ({
-        ...prev,
-        currentIndex: (prev.currentIndex + 1) % images.length,
-      }));
-      startTimeRef.current = Date.now();
-    }, interval);
+    let lastTime = Date.now();
+    let animationFrameId;
 
-    const updateProgress = () => {
+    const updateSlider = () => {
       const currentTime = Date.now();
+      const deltaTime = currentTime - lastTime;
       const elapsedTime = currentTime - startTimeRef.current;
-      const normalizedProgress = ((elapsedTime % interval) / interval) * 100;
+      
+      // Calculamos el progreso basado en el tiempo transcurrido real
+      const progress = (elapsedTime % interval) / interval * 100;
 
       setState((prev) => ({
         ...prev,
-        progress: normalizedProgress,
+        progress: progress,
+        currentIndex: Math.floor(elapsedTime / interval) % images.length
       }));
 
-      return requestAnimationFrame(updateProgress);
+      if (elapsedTime >= interval) {
+        startTimeRef.current = currentTime - (elapsedTime % interval);
+      }
+
+      lastTime = currentTime;
+      animationFrameId = requestAnimationFrame(updateSlider);
     };
 
-    const animationId = requestAnimationFrame(updateProgress);
-
+    animationFrameId = requestAnimationFrame(updateSlider);
     return () => {
-      clearInterval(timer);
-      cancelAnimationFrame(animationId);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, [interval, images.length]);
 

@@ -37,15 +37,7 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
   useEffect(() => {
     if (images.length === 0) return;
 
-    const timer = setInterval(() => {
-      setState((prev) => ({
-        ...prev,
-        currentIndex: (prev.currentIndex + 1) % images.length,
-      }));
-      startTimeRef.current = Date.now();
-    }, interval);
-
-    const updateProgress = () => {
+    const updateSlider = () => {
       const currentTime = Date.now();
       const elapsedTime = currentTime - startTimeRef.current;
       const normalizedProgress = ((elapsedTime % interval) / interval) * 100;
@@ -53,17 +45,21 @@ export default function Slider({ images = [], interval = 5000, width = 110 }) {
       setState((prev) => ({
         ...prev,
         progress: normalizedProgress,
+        currentIndex:
+          elapsedTime >= interval
+            ? (prev.currentIndex + 1) % images.length
+            : prev.currentIndex,
       }));
 
-      return requestAnimationFrame(updateProgress);
+      if (elapsedTime >= interval) {
+        startTimeRef.current = currentTime;
+      }
+
+      return requestAnimationFrame(updateSlider);
     };
 
-    const animationId = requestAnimationFrame(updateProgress);
-
-    return () => {
-      clearInterval(timer);
-      cancelAnimationFrame(animationId);
-    };
+    const animationId = requestAnimationFrame(updateSlider);
+    return () => cancelAnimationFrame(animationId);
   }, [interval, images.length]);
 
   const centerSelectedThumbnail = useCallback((index) => {
