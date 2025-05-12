@@ -1,0 +1,152 @@
+"# @aicadev/react-image-gallery
+
+Una galería de imágenes moderna y elegante para React, con transiciones suaves y miniaturas interactivas. Perfecta para mostrar colecciones de imágenes con una interfaz profesional y responsive.
+
+![Ejemplo de Galería](https://via.placeholder.com/800x400)
+
+## 🚀 Instalación
+
+\`\`\`bash
+npm install @aicadev/react-image-gallery
+\`\`\`
+
+## 📖 Uso Básico
+
+\`\`\`jsx
+import { Slider } from '@aicadev/react-image-gallery';
+
+function App() {
+const images = [
+'https://ejemplo.com/imagen1.jpg',
+'https://ejemplo.com/imagen2.jpg',
+'https://ejemplo.com/imagen3.jpg'
+];
+
+return (
+<Slider
+      images={images}
+      interval={5000}
+      width={110}
+    />
+);
+}
+\`\`\`
+
+## ✨ Características
+
+- 🖼️ Slider de imágenes a pantalla completa
+- 🎯 Miniaturas interactivas con indicador de progreso circular
+- ⚡ Transiciones suaves con efectos de desvanecimiento
+- 🔄 Rotación automática de imágenes configurable
+- 📱 Diseño totalmente responsive
+- 🎨 Efectos visuales elegantes (gradientes, overlays)
+- 🚀 Precarga automática de imágenes
+- 📦 Ligero y fácil de integrar
+
+## ⚙️ Props
+
+| Prop         | Tipo         | Valor por defecto | Descripción                                      |
+| ------------ | ------------ | ----------------- | ------------------------------------------------ |
+| \`images\`   | \`string[]\` | \`[]\`            | Array de URLs de imágenes                        |
+| \`interval\` | \`number\`   | \`5000\`          | Intervalo de rotación automática en milisegundos |
+| \`width\`    | \`number\`   | \`110\`           | Ancho de las miniaturas en píxeles               |
+
+## 🎯 Ejemplos
+
+### Galería con Intervalo Personalizado
+
+\`\`\`jsx
+import { Slider } from '@aicadev/react-image-gallery';
+
+function CustomIntervalGallery() {
+const images = [
+'https://ejemplo.com/imagen1.jpg',
+'https://ejemplo.com/imagen2.jpg'
+];
+
+return (
+<Slider
+images={images}
+interval={3000} // Rotación cada 3 segundos
+/>
+);
+}
+\`\`\`
+
+### Galería con Miniaturas Personalizadas
+
+\`\`\`jsx
+import { Slider } from '@aicadev/react-image-gallery';
+
+function CustomThumbnailsGallery() {
+const images = [
+'https://ejemplo.com/imagen1.jpg',
+'https://ejemplo.com/imagen2.jpg'
+];
+
+return (
+<Slider
+images={images}
+width={150} // Miniaturas más grandes
+/>
+);
+}
+\`\`\`
+
+## 🎨 Características Detalladas
+
+### Sistema de Precarga
+
+- Carga asíncrona de imágenes para una experiencia fluida
+- Indicador de carga mientras las imágenes se preparan
+- Manejo de errores de carga integrado
+
+### Rotación Automática
+
+- Transiciones suaves entre imágenes
+- Indicador de progreso circular en las miniaturas activas
+- Control preciso del tiempo de transición
+
+### Interfaz Visual
+
+- Fondo con efecto de superposición gradual
+- Gradientes suaves para mejor legibilidad
+- Miniaturas interactivas con estados activos
+- Animaciones suaves en hover y selección
+
+## 🛠️ Requisitos
+
+### Peer Dependencies
+
+\`\`\`json
+{
+\"react\": \">=18.0.0\",
+\"react-dom\": \">=18.0.0\"
+}
+\`\`\`
+
+## 📝 Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - vea el archivo [LICENSE](LICENSE) para más detalles.
+
+## 👥 Autor
+
+AICA Development
+
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los cambios propuestos.
+
+1. Haz fork del repositorio
+2. Crea una rama para tu feature (\`git checkout -b feature/NuevaCaracteristica\`)
+3. Haz commit de tus cambios (\`git commit -m 'Añade nueva característica'\`)
+4. Push a la rama (\`git push origin feature/NuevaCaracteristica\`)
+5. Abre un Pull Request
+
+## 🆘 Soporte
+
+Si encuentras algún problema o tienes alguna sugerencia, por favor abre un issue en el [repositorio de GitHub](https://github.com/tu-usuario/aicadev-react-gallery/issues).
+
+## 🌟 Agradecimientos
+
+Gracias a todos los contribuidores que han ayudado a hacer de esta galería una realidad."
