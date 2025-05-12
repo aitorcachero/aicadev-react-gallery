@@ -1,0 +1,53 @@
+{
+  "name": "aicadev/react-gallery",
+  "version": "1.0.0",
+  "description": "Una galería de imágenes moderna y elegante para React, con transiciones suaves y miniaturas interactivas",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "prepare": "vite build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "keywords": [
+    "react",
+    "gallery",
+    "slider",
+    "carousel",
+    "images",
+    "responsive",
+    "thumbnails"
+  ],
+  "author": "AICA Development",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/aicadev-react-gallery"
+  },
+  "bugs": {
+    "url": "https://github.com/tu-usuario/aicadev-react-gallery/issues"
+  },
+  "homepage": "https://github.com/tu-usuario/aicadev-react-gallery#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react-swc": "^3.9.0",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.5"
+  }
+}
